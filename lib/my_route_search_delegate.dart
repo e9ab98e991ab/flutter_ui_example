@@ -43,7 +43,7 @@ class MyRouteSearchDelegate extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     // List<String> suggestions = _history;
     Iterable<MyRoute> suggestions = [
-      for (final routeName in Provider.of<MyAppSettings>(context).searchHistory)
+      for (final routeName in Provider.of<FlutterAppSettings>(context).searchHistory)
         kRouteNameToRoute[routeName]!
     ];
     if (this.query.isNotEmpty) {
@@ -80,7 +80,7 @@ class MyRouteSearchDelegate extends SearchDelegate<String> {
                   textStyle: Theme.of(context).textTheme.bodyText2!,
                 ),
           onTap: () {
-            Provider.of<MyAppSettings>(context, listen: false)
+            Provider.of<FlutterAppSettings>(context, listen: false)
                 .addSearchHistory(route.routeName);
             Navigator.of(context).popAndPushNamed(route.routeName);
           },

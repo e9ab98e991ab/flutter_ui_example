@@ -9,8 +9,7 @@ import 'package:flutter_ui_example/utils/utils.dart';
 // 注意：当 APP_VERSION 改变时，记得也要更新 pubspec.yaml。
 const APP_VERSION = 'v3.0.0';
 const APP_NAME = 'Flutter UI Example';
-final kAppIcon =
-    Image.asset(Utils.getImgPath("launcher_icon"), height: 64.0, width: 64.0);
+final kAppIcon = Image.asset(Utils.getImgPath("launcher_icon"), height: 64.0, width: 64.0);
 const APP_DESCRIPTION = '一个展示 Flutter 组件的应用程，并且可以查看代码视图 '
     '\n\nDeveloped by e9ab98e991ab.';
 const GITHUB_URL = 'https://github.com/e9ab98e991ab/flutter_ui_example';

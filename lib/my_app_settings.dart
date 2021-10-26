@@ -1,38 +1,50 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_example/bean/route_group.dart';
 import 'package:flutter_ui_example/my_app_routes.dart';
 import 'package:flutter_ui_example/my_route.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MyAppSettings extends ChangeNotifier {
-  static const _kDarkModePreferenceKey = 'DARK_MODE';
-  static const _kSearchHistoryPreferenceKey = 'SEARCH_HISTORY';
-  static const _kBookmarkedRoutesPreferenceKey = 'BOOKMARKED_ROUTES';
+class FlutterAppSettings extends ChangeNotifier {
+  static const _kDarkModeKey = 'DARK_MODE';
+  static const _kSearchHistoryKey = 'SEARCH_HISTORY';
+  static const _kBookmarkedRoutesKey = 'BOOKMARKED_ROUTES';
   static final _kRoutenameToRouteMap = {
     for (MyRoute route in kAllRoutes) route.routeName: route
   };
 
-  final SharedPreferences _pref;
+  SharedPreferences? _pref =null;
 
-  MyAppSettings(this._pref) {
-    // 首次打开应用程序时：将所有路线标记为已知——我们只为新路线显示一个红点。
-    if (_pref.getStringList(_kKnownRoutesKey) == null) {
+  FlutterAppSettings() {
+    SharedPreferences.getInstance().then((value) => {
+      _pref = value,
+      name()
+    });
+    // When first time opening the app: mark all routes as known -- we only
+    // display a red dot for *new* routes.
+
+  }
+
+  void name() {
+    if (_pref?.getStringList(_kKnownRoutesKey) == null) {
       final allrouteNames = _kRoutenameToRouteMap.keys.toList()
         ..add(kAboutRoute.routeName);
-      _pref.setStringList(_kKnownRoutesKey, allrouteNames);
+      _pref?.setStringList(_kKnownRoutesKey, allrouteNames);
     }
   }
 
-  bool get isDarkMode => _pref.getBool(_kDarkModePreferenceKey) ?? false;
+  bool get isDarkMode => _pref?.getBool(_kDarkModeKey) ?? false;
 
   // ignore:avoid_positional_boolean_parameters
   void setDarkMode(bool val) {
-    _pref.setBool(_kDarkModePreferenceKey, val);
+    _pref?.setBool(_kDarkModeKey, val);
     notifyListeners();
   }
 
   /// The list of route names in search history.
   List<String> get searchHistory =>
-      _pref.getStringList(_kSearchHistoryPreferenceKey) ?? [];
+      _pref?.getStringList(_kSearchHistoryKey) ?? [];
 
   void addSearchHistory(String routeName) {
     List<String> history = this.searchHistory;
@@ -41,17 +53,17 @@ class MyAppSettings extends ChangeNotifier {
     if (history.length >= 10) {
       history = history.take(10).toList();
     }
-    _pref.setStringList(_kSearchHistoryPreferenceKey, history);
+    _pref?.setStringList(_kSearchHistoryKey, history);
   }
 
   List<String> get starredRoutenames =>
-      _pref.getStringList(_kBookmarkedRoutesPreferenceKey) ?? [];
+      _pref?.getStringList(_kBookmarkedRoutesKey) ?? [];
 
   List<MyRoute> get starredRoutes => [
-        for (String routename in this.starredRoutenames)
-          if (_kRoutenameToRouteMap[routename] != null)
-            _kRoutenameToRouteMap[routename]!
-      ];
+    for (String routename in this.starredRoutenames)
+      if (_kRoutenameToRouteMap[routename] != null)
+        _kRoutenameToRouteMap[routename]!
+  ];
 
   // Returns a widget showing the star status of one demo route.
   Widget starStatusOfRoute(String routeName) {
@@ -75,7 +87,7 @@ class MyAppSettings extends ChangeNotifier {
       staredRoutes.add(routeName);
     }
     final dedupedStaredRoutes = Set<String>.from(staredRoutes).toList();
-    _pref.setStringList(_kBookmarkedRoutesPreferenceKey, dedupedStaredRoutes);
+    _pref?.setStringList(_kBookmarkedRoutesKey, dedupedStaredRoutes);
     notifyListeners();
   }
 
@@ -83,12 +95,12 @@ class MyAppSettings extends ChangeNotifier {
   // for newly added routes.
   static const _kKnownRoutesKey = 'KNOWN_ROUTES';
   bool isNewRoute(String routeName) =>
-      !(_pref.getStringList(_kKnownRoutesKey)?.contains(routeName) ?? false);
+      !(_pref?.getStringList(_kKnownRoutesKey)?.contains(routeName) ?? false);
 
   void markRouteKnown(String routeName) {
     if (isNewRoute(routeName)) {
-      final knowRoutes = _pref.getStringList(_kKnownRoutesKey)?..add(routeName);
-      _pref.setStringList(_kKnownRoutesKey, knowRoutes ?? []);
+      final knowRoutes = _pref?.getStringList(_kKnownRoutesKey)?..add(routeName);
+      _pref?.setStringList(_kKnownRoutesKey, knowRoutes ?? []);
       notifyListeners();
     }
   }

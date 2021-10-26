@@ -1,6 +1,7 @@
 
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_example/bean/route_group.dart';
 import 'package:provider/provider.dart';
 
 import './my_app_routes.dart'
@@ -20,17 +21,17 @@ class _MyHomePageState extends State<MyHomePage> {
     BottomNavigationBarItem(
       backgroundColor: Colors.blue,
       icon: Icon(Icons.library_books),
-      label: 'Basics',
+      label: '首页',
     ),
     BottomNavigationBarItem(
       backgroundColor: Colors.blueAccent,
       icon: Icon(Icons.insert_chart),
-      label: 'Advanced',
+      label: '高级效果',
     ),
     BottomNavigationBarItem(
       backgroundColor: Colors.indigo,
       icon: Icon(Icons.star),
-      label: 'Bookmarks',
+      label: '书签',
     ),
   ];
 
@@ -47,8 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
         _myRouteGroupToExpansionTile(group),
     ];
     final bookmarkAndAboutDemos = <Widget>[
+
       for (final MyRoute route
-          in Provider.of<MyAppSettings>(context).starredRoutes)
+          in Provider.of<FlutterAppSettings>(context).starredRoutes)
         _myRouteToListTile(route, leading: const Icon(Icons.bookmark)),
       _myRouteToListTile(kAboutRoute, leading: const Icon(Icons.info)),
     ];
@@ -74,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _myRouteToListTile(MyRoute myRoute,
       {Widget? leading, IconData trialing = Icons.keyboard_arrow_right}) {
-    final mySettings = context.watch<MyAppSettings>();
+    final mySettings = context.watch<FlutterAppSettings>();
     final routeTitleTextStyle = Theme.of(context)
         .textTheme
         .bodyText2!
@@ -102,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _myRouteGroupToExpansionTile(MyRouteGroup myRouteGroup) {
-    final nNew = context.watch<MyAppSettings>().numNewRoutes(myRouteGroup);
+    final nNew = context.watch<FlutterAppSettings>().numNewRoutes(myRouteGroup);
     return Card(
       child: ExpansionTile(
         leading: nNew > 0

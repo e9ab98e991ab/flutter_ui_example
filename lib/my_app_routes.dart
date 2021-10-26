@@ -1,8 +1,9 @@
-// This file declares routes of this app, in particular it declares the
-// "structure" of the group of example routes, in a const List<Tuple2> object.
+// This file declares modular of this app, in particular it declares the
+// "structure" of the group of example modular, in a const List<Tuple2> object.
 // ignore_for_file: sort_child_properties_last
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_example/about.dart';
+import 'package:flutter_ui_example/bean/route_group.dart';
 import 'package:flutter_ui_example/constants.dart';
 import 'package:flutter_ui_example/home_page.dart';
 import 'package:flutter_ui_example/modular/animation/animation_animated_widget_ex.dart';
@@ -27,27 +28,6 @@ const kAboutRoute = MyRoute(
   child: MyAboutRoute(),
 );
 
-// The structure of app's navigation drawer items is a 2-level menu, its schema
-// is the following:
-// [ MyRouteGroup{
-//        groupName: group1_name,
-//        icon: group1_icon,
-//        routes: [route1, route2, ...]
-//   },
-//   MyRouteGroup{
-//        groupName: group2_name,
-//        icon: group2_icon,
-//        routes: [route1, route2, ...]
-//   },
-//   ...
-// ]
-class MyRouteGroup {
-  const MyRouteGroup(
-      {required this.groupName, required this.icon, required this.routes});
-  final String groupName;
-  final Widget icon;
-  final List<MyRoute> routes;
-}
 
 const kMyAppRoutesBasic = <MyRouteGroup>[
   MyRouteGroup(
@@ -99,6 +79,8 @@ const kMyAppRoutesAdvanced = <MyRouteGroup>[
     ],
   ),
 ];
+
+
 
 final kAllRouteGroups = <MyRouteGroup>[
   ...kMyAppRoutesBasic,

@@ -10,21 +10,28 @@ import './my_app_settings.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 import 'my_route_search_delegate.dart';
+
 class MyRoute extends StatelessWidget {
   static const _kFrontLayerMinHeight = 128.0;
+
   // Path of source file (relative to project root). The file's content will be
   // shown in the "Code" tab.
   final String sourceFilePath;
+
   // Actual content of the example.
   final Widget child;
+
   // Title shown in the route's appbar. By default just returns routeName.
   final String? _title;
+
   // A short description of the route. If not null, will be shown as subtitle in
   // the home page list tile.
   final String description;
+
   // Returns a set of links {title:link} that are relative to the route. Can put
   // documention links or reference video/article links here.
   final Map<String, String> links;
+
   // Route name of a page, if missing, use ${child.runtimeType}.
   final String? _routeName;
   final Iterable<PlatformType> supportedPlatforms;
@@ -74,7 +81,7 @@ class MyRoute extends StatelessWidget {
                 ? this.child
                 : WidgetWithCodeView(
                     sourceFilePath: this.sourceFilePath,
-                    codeLinkPrefix: '$GITHUB_URL/blob/master',
+                    codeLinkPrefix: '$GITHUB_URL/blob/main',
                     child: this.child,
                   ),
       ),
@@ -83,7 +90,7 @@ class MyRoute extends StatelessWidget {
   }
 
   List<Widget> _getAppbarActions(BuildContext context) {
-    final settings = Provider.of<MyAppSettings>(context);
+    final settings = Provider.of<FlutterAppSettings>(context);
     return <Widget>[
       const BackdropToggleButton(),
       if (this.routeName == Navigator.defaultRouteName)
@@ -130,15 +137,12 @@ class MyRoute extends StatelessWidget {
           subtitle: const Text(APP_VERSION),
         ),
         ...MyAboutRoute.kAboutListTiles,
-        Consumer<MyAppSettings>(builder: (context, MyAppSettings settings, _) {
+        Consumer<FlutterAppSettings>(builder: (context, FlutterAppSettings settings, _) {
           return ListTile(
             onTap: () {},
-            leading: DayNightSwitcherIcon(
-              isDarkModeEnabled: settings.isDarkMode,
-              onStateChanged: (_) {},
-            ),
+            leading: Icon(Icons.nightlight_round),
             title: Text('Dark mode: ${settings.isDarkMode ? 'on' : 'off'}'),
-            trailing: DayNightSwitcher(
+            trailing: DayNightSwitcherIcon(
               isDarkModeEnabled: settings.isDarkMode,
               onStateChanged: (bool value) => settings.setDarkMode(value),
             ),

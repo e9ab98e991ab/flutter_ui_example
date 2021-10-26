@@ -22,8 +22,18 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
-
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+    # Rationale: in our app, the codes are for reading on mobile phones, adding
+    # `this` makes it easier for readers to understand which variables class
+    # members and which ones are not.
+    unnecessary_this: false
+    # Same as above, allow writing local variable types to improve readability
+    # without IDE.
+    omit_local_variable_types: false
+    # We sometimes have print statements just for demo purposes.
+    avoid_print: false
+    use_string_buffers: false
+    avoid_redundant_argument_values: false
+    prefer_const_constructors: false
+    avoid_dynamic_calls: false
+    directives_ordering: false
+    sort_pub_dependencies: false

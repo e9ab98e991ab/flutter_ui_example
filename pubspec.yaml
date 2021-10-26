@@ -11,11 +11,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  get: 4.3.8
   cupertino_icons: ^1.0.2
   backdrop: ^0.6.2
   provider: ^6.0.1
-  shared_preferences: ^2.0.8
+
+  mmkv: ">=1.2.11"
   url_launcher: ^6.0.12
   #代码显示工具
   widget_with_codeview: ^2.0.0-nullsafe
@@ -25,7 +26,12 @@ dependencies:
   #图片请求
   cached_network_image: 3.1.0
 
+  flutter_screenutil: 5.0.0+2
+
   flutter_gallery_assets: ^1.0.2
+
+
+  shared_preferences: ^2.0.6
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -56,6 +62,9 @@ flutter:
     # assets. Note: this doesn't work with subfolders.
     # c.f. https://github.com/flutter/flutter/issues/4890#issuecomment-407327749
     - lib/modular/
+    - lib/modular/widgets/
+    - lib/modular/animation/
+    - lib/modular/data/
  #   - lib/modular/data
     - assets/images/
     - assets/lottie/
