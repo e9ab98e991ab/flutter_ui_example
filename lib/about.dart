@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_example/app/FlutterRoute.dart';
 import 'package:flutter_ui_example/constants.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
-import 'package:url_launcher/url_launcher.dart' as url_launcher;
 // Inspired by the about page in Eajy's flutter demo:
 // https://github.com/Eajy/flutter_demo/blob/master/lib/route/about.dart
 class MyAboutRoute extends StatelessWidget {
@@ -16,17 +18,17 @@ class MyAboutRoute extends StatelessWidget {
     ListTile(
       leading: const Icon(Icons.code),
       title: const Text('Source code on GitHub'),
-      onTap: () => url_launcher.launch(GITHUB_URL),
+      onTap: () => Get.toNamed(FlutterRoute.webview, arguments: {"url": GITHUB_URL}) ,
     ),
     ListTile(
       leading: const Icon(Icons.bug_report),
       title: const Text('Report issue on GitHub'),
-      onTap: () => url_launcher.launch('$GITHUB_URL/issues'),
+      onTap: () => Get.toNamed(FlutterRoute.webview, arguments:{"url": '$GITHUB_URL/issues'}),
     ),
     ListTile(
       leading: const Icon(Icons.open_in_new),
       title: const Text('Visit my website'),
-      onTap: () => url_launcher.launch(AUTHOR_SITE),
+      onTap: () => Get.toNamed(FlutterRoute.webview, arguments: {"url": AUTHOR_SITE}),
     ),
   ];
 

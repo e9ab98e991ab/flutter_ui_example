@@ -17,7 +17,6 @@ dependencies:
   provider: ^6.0.1
 
   mmkv: ">=1.2.11"
-  url_launcher: ^6.0.12
   #代码显示工具
   widget_with_codeview: ^2.0.0-nullsafe
   day_night_switcher: ^0.2.0+1
@@ -29,9 +28,14 @@ dependencies:
   flutter_screenutil: 5.0.0+2
 
   flutter_gallery_assets: ^1.0.2
-
-
   shared_preferences: ^2.0.6
+
+  fluttertoast: 8.0.8
+
+  # https://github.com/flutterchina/flukit.
+  flukit: ^2.0.0
+  webview_flutter: 2.1.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -65,6 +69,8 @@ flutter:
     - lib/modular/widgets/
     - lib/modular/animation/
     - lib/modular/data/
+    - lib/modular/search/
+    - lib/modular/splash/
  #   - lib/modular/data
     - assets/images/
     - assets/lottie/

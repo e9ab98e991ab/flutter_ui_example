@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ui_example/bean/route_group.dart';
 import 'package:flutter_ui_example/my_app_routes.dart';
 import 'package:flutter_ui_example/my_route.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FlutterAppSettings extends ChangeNotifier {
@@ -21,9 +22,6 @@ class FlutterAppSettings extends ChangeNotifier {
       _pref = value,
       name()
     });
-    // When first time opening the app: mark all routes as known -- we only
-    // display a red dot for *new* routes.
-
   }
 
   void name() {
@@ -68,7 +66,7 @@ class FlutterAppSettings extends ChangeNotifier {
   // Returns a widget showing the star status of one demo route.
   Widget starStatusOfRoute(String routeName) {
     return IconButton(
-      tooltip: 'Bookmark',
+      tooltip: ('bookmarks'.tr),
       icon: Icon(
         this.isStarred(routeName) ? Icons.star : Icons.star_border,
         color: this.isStarred(routeName) ? Colors.yellow : Colors.grey,

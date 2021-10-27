@@ -16,9 +16,13 @@ class Langure extends Translations {
   Map<String, Map<String, String>> get keys => {
     'en_US': {
       'home_lab': 'Home',
+      'advanced_effects': 'advanced effects',
+      'bookmarks': 'bookmarks',
     },
     'zh_CN': {
       'home_lab': '首页',
+      'advanced_effects': '高级效果',
+      'bookmarks': '书签',
     }
   };
 

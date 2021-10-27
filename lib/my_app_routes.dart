@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ui_example/about.dart';
 import 'package:flutter_ui_example/bean/route_group.dart';
 import 'package:flutter_ui_example/constants.dart';
-import 'package:flutter_ui_example/home_page.dart';
+import 'package:flutter_ui_example/app/home_page.dart';
 import 'package:flutter_ui_example/modular/animation/animation_animated_widget_ex.dart';
 import 'package:flutter_ui_example/modular/animation/animation_low_level_ex.dart';
+import 'package:flutter_ui_example/modular/search/search_bar_view_ex.dart';
+import 'package:flutter_ui_example/modular/splash/splash_page.dart';
 import 'package:flutter_ui_example/modular/widgets/widgets_icon_ex.dart';
 import 'package:flutter_ui_example/modular/widgets/widgets_text_ex.dart';
 import 'package:flutter_ui_example/my_route.dart';
@@ -28,7 +30,6 @@ const kAboutRoute = MyRoute(
   child: MyAboutRoute(),
 );
 
-
 const kMyAppRoutesBasic = <MyRouteGroup>[
   MyRouteGroup(
     groupName: 'Widgets',
@@ -46,7 +47,31 @@ const kMyAppRoutesBasic = <MyRouteGroup>[
       ),
     ],
   ),
+  MyRouteGroup(
+    groupName: 'search',
+    icon: Icon(Icons.search),
+    routes: <MyRoute>[
+      MyRoute(
+        child: Search(),
+        sourceFilePath: 'lib/modular/search/search_bar_view_ex.dart',
+        title: 'search_bar_view_ex',
+      ),
+    ],
+  ),
+  MyRouteGroup(
+    groupName: 'Splash',
+    icon: Icon(Icons.stay_primary_landscape_sharp),
+    routes: <MyRoute>[
+      MyRoute(
+        child: SplashPage(),
+        sourceFilePath: 'lib/modular/splash/splash_page.dart',
+        title: 'splash_page',
+      ),
+    ],
+  ),
 ];
+
+
 
 const kMyAppRoutesAdvanced = <MyRouteGroup>[
   MyRouteGroup(
@@ -62,25 +87,22 @@ const kMyAppRoutesAdvanced = <MyRouteGroup>[
         links: {
           'Tutorial':
               'https://flutter.dev/docs/development/ui/animations/tutorial',
-          'Youtube video': 'https://www.youtube.com/watch?v=mdhoIQqS2z0',
         },
       ),
       MyRoute(
         child: AnimatedWidgetExample(),
-        sourceFilePath: 'lib/modular/animation/animation_animated_widget_ex.dart',
+        sourceFilePath:
+            'lib/modular/animation/animation_animated_widget_ex.dart',
         title: 'AnimatedWidget',
         description: 'Easier animtation without addListener() and setState()',
         links: {
           'Tutorial':
               'https://flutter.dev/docs/development/ui/animations/tutorial#simplifying-with-animatedwidget',
-          'Youtube video': 'https://www.youtube.com/watch?v=mdhoIQqS2z0',
         },
       ),
     ],
   ),
 ];
-
-
 
 final kAllRouteGroups = <MyRouteGroup>[
   ...kMyAppRoutesBasic,

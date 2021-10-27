@@ -2,14 +2,16 @@ import 'package:backdrop/backdrop.dart';
 import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_example/about.dart';
+import 'package:flutter_ui_example/app/FlutterRoute.dart';
+import 'package:flutter_ui_example/app/theme_controller.dart';
 import 'package:flutter_ui_example/constants.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:widget_with_codeview/widget_with_codeview.dart';
 import './my_app_settings.dart';
 
-import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
-import 'my_route_search_delegate.dart';
+import 'app/my_route_search_delegate.dart';
 
 class MyRoute extends StatelessWidget {
   static const _kFrontLayerMinHeight = 128.0;
@@ -116,9 +118,10 @@ class MyRoute extends StatelessWidget {
                     trailing: IconButton(
                       icon: const Icon(Icons.open_in_new),
                       tooltip: titleAndLink.value,
-                      onPressed: () => url_launcher.launch(titleAndLink.value),
+                      onPressed: () =>
+                      Get.toNamed(FlutterRoute.webview, arguments: {"url":titleAndLink.value}) ,
                     ),
-                    onTap: () => url_launcher.launch(titleAndLink.value),
+                    onTap: () => Get.toNamed(FlutterRoute.webview, arguments: {"url":titleAndLink.value}) ,
                   ),
                 )
             ];
@@ -144,7 +147,9 @@ class MyRoute extends StatelessWidget {
             title: Text('Dark mode: ${settings.isDarkMode ? 'on' : 'off'}'),
             trailing: DayNightSwitcherIcon(
               isDarkModeEnabled: settings.isDarkMode,
-              onStateChanged: (bool value) => settings.setDarkMode(value),
+              onStateChanged: (bool value) => {
+                Get.find<ThremeController>().changeTheme(value)
+              },
             ),
           );
         }),

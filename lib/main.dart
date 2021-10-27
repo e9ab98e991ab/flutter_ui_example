@@ -7,7 +7,7 @@ import 'package:flutter_ui_example/constants.dart';
 import 'package:flutter_ui_example/langure/langure.dart';
 import 'package:flutter_ui_example/my_app_routes.dart';
 import 'package:flutter_ui_example/my_app_settings.dart';
-import 'package:flutter_ui_example/themes.dart';
+import 'package:flutter_ui_example/app/themes.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
