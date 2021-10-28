@@ -9,6 +9,7 @@ import 'package:flutter_ui_example/app/home_page.dart';
 import 'package:flutter_ui_example/modular/animation/animation_animated_widget_ex.dart';
 import 'package:flutter_ui_example/modular/animation/animation_low_level_ex.dart';
 import 'package:flutter_ui_example/modular/search/search_bar_view_ex.dart';
+import 'package:flutter_ui_example/modular/search/search_custom_widgets.dart';
 import 'package:flutter_ui_example/modular/splash/splash_page.dart';
 import 'package:flutter_ui_example/modular/widgets/widgets_icon_ex.dart';
 import 'package:flutter_ui_example/modular/widgets/widgets_text_ex.dart';
@@ -55,6 +56,11 @@ const kMyAppRoutesBasic = <MyRouteGroup>[
         child: Search(),
         sourceFilePath: 'lib/modular/search/search_bar_view_ex.dart',
         title: 'search_bar_view_ex',
+      ),
+      MyRoute(
+        child: SearchMainView(),
+        sourceFilePath: 'lib/modular/search/search_custom_widgets.dart',
+        title: 'search_custom_widgets',
       ),
     ],
   ),
